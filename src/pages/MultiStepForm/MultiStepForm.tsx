@@ -44,7 +44,7 @@ export default function MultiStepForm() {
       return{...prev, ...fields}
     })
   }
-  const {step, stepForm, form, back, next, goTo,} = useMultiStep([<PersonalInfo {...data} updateFields={updateFields} />, <Plan {...data} updateFields={updateFields}/>, <AddOns />, <FinishingUp />])
+  const {step, stepForm, form, back, next,} = useMultiStep([<PersonalInfo {...data} updateFields={updateFields} />, <Plan {...data} updateFields={updateFields}/>, <AddOns />, <FinishingUp />])
   return (
     <div className="flex flex-col md:flex-row md:p-5 lg:p-20 md:justify-center md:h-screen md:w-screen md:content-center">
       <div className="flex justify-center md:justify-start md:flex-col md:gap-4 md:pt-5 md:w-96 lg:w-60 md:content-start py-24 md:py-0 bg-[url('/images/bg-sidebar-mobile.svg')] md:bg-[url('/images/bg-sidebar-desktop.svg')] md:rounded-lg bg-no-repeat bg-cover">

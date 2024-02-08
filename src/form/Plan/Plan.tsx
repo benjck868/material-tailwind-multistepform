@@ -1,7 +1,6 @@
-import {List, ListItem, ListItemPrefix, Avatar, Card, Typography, Switch, } from "@material-tailwind/react"
+import {List, ListItem, ListItemPrefix, Avatar, Typography, Switch, } from "@material-tailwind/react"
 import { twMerge } from "tailwind-merge"
 import FormWrapper from "../FormWrapper"
-import { useState } from "react"
 
 const PlanData = [{
   plan : 'Arcade',
