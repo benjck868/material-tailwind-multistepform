@@ -1,6 +1,9 @@
-import { Input } from "@material-tailwind/react";
+import { Input, Typography } from "@material-tailwind/react";
 import FormWrapper from "../FormWrapper";
 import { ReactNode } from "react";
+import {FormikProps} from 'formik'
+import { formDataSchema } from "../../pages/MultiStepForm/MultiStepForm";
+import * as Yup from 'yup'
 
 type InputWrapperProps = {
     children : ReactNode
@@ -13,29 +16,29 @@ function InputWrapper({children}: InputWrapperProps){
         </div>
     )
 }
-type PersonalInfo = {
-    name: string
-    email: string
-    phone: string
-}
-type PersonalInfoProps = PersonalInfo & {
-    updateFields: (fields: Partial<PersonalInfo>)=>void
+type PersonalInfo = Yup.InferType<typeof formDataSchema>
+type PersonalInfoProps = {
+    formName: string
+    context: FormikProps<PersonalInfo>
 }
 
-export default function PersonalInfo({name, email, phone, updateFields}: PersonalInfoProps) {
+export default function PersonalInfo({formName, context}: PersonalInfoProps) {
   return (
     <>
-        <FormWrapper  title="Personal Information" discription="Please provide your name, email address and phone number.">
+        <FormWrapper  title={formName} discription="Please provide your name, email address and phone number.">
             <InputWrapper>
-                <Input type="text" value={name} onChange={e=>updateFields({name:e.target.value})} variant="static" size="lg" name="name" label="Name: " placeholder="e.g. Stephen King"/>
+                <Input type="text" id="name" {...context.getFieldProps('name')} variant="static" size="lg" name="name" label="Name: " placeholder="e.g. Stephen King" error={context.touched.name&&context.errors.name?true:false}/>
+                <Typography className="text-xs text-red-300 mt-2">{context.errors.name?context.errors.name:''}</Typography>
             </InputWrapper>
 
             <InputWrapper>
-                <Input type="email" value={email} onChange={e=>updateFields({email:e.target.value})} label="Email: " variant="static" size="lg" name="email-address" placeholder="e.g. stephenking@lorem.com"/>
+                <Input type="email" id="email" {...context.getFieldProps('email')} label="Email: " variant="static" size="lg" name="email" placeholder="e.g. stephenking@lorem.com" error={context.touched.email&&context.errors.email?true:false}/>
+                <Typography className="text-xs text-red-300 mt-2">{context.errors.email?context.errors.email:''}</Typography>
             </InputWrapper>    
             <InputWrapper>
-                <Input type="tel" value={phone} onChange={e=>updateFields({phone:e.target.value})} label="Phone number: " variant="static" name="phone-number" placeholder="e.g. +1 234 567 890" />
-            </InputWrapper>        
+                <Input type="tel" id="phone" {...context.getFieldProps('phone')}label="Phone number: " variant="static" name="phone" placeholder="e.g. +1 234 567 890" error={context.touched.phone&&context.errors.phone?true:false}/>
+                <Typography className="text-xs text-red-300 mt-2">{context.errors.phone?context.errors.phone:''}</Typography>
+            </InputWrapper> 
         </FormWrapper>
     </>
   )
