@@ -48,8 +48,8 @@ export default function AddOns({formName, context}: AddOnProps) {
                     addOnsData.map((data,i)=>{
                         return(
                             <label htmlFor={data.id} key={i}>
-                                <ListItem className={twMerge(isChecked(context.values.addOns, data.id)?"border-MSF-Marine-blue" :" border-MSF-Light-gray",["border mb-2"])}>
-                                    <ListItemPrefix>
+                                <ListItem className={twMerge(isChecked(context.values.addOns, data.id)?"border-MSF-Marine-blue" :" border-MSF-Light-gray",["border mb-2 p-0 py-3"])}>
+                                    <ListItemPrefix className="mr-0">
                                         <Checkbox color="blue" checked={isChecked(context.values.addOns, data.id)} type="checkbox" id={data.id} name="addOns" value={data.id} onChange={context.handleChange} /> 
                                     </ListItemPrefix>
                                     <div>
@@ -57,7 +57,7 @@ export default function AddOns({formName, context}: AddOnProps) {
                                         <Typography className="text-xs text-MSF-Cool-gray">{data.description}</Typography>
                                     </div>
                                     <ListItemSuffix>
-                                        <Typography className="text-sm text-MSF-Purplish-blue">+${context.values.isYearly?data.price*10+' /yr':data.price+' /mo'}</Typography>
+                                        <Typography className="text-xs text-MSF-Purplish-blue">+${context.values.isYearly?data.price*10+' /yr':data.price+' /mo'}</Typography>
                                     </ListItemSuffix>
                                 </ListItem>
                             </label>

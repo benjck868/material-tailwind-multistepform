@@ -58,7 +58,7 @@ type ButtonFormProps = {
 
 function ButtonForm({step, back, next, validateBeforeNext}: ButtonFormProps){
   return(
-    <div className={twMerge(step===1?"justify-end": "justify-between", ["flex"])}>
+    <div className={twMerge(step===1?"justify-end": "justify-between", ["flex mt-4 mb-2"])}>
       <Button variant="text" type="button" onClick={back} className={twMerge(step === 1?"hidden":"block",[""])}> Go Back</Button>
       <Button type="submit" color="blue" className={step===4?'block':'hidden'}>submit</Button>
       <Button type="button" disabled={validateBeforeNext()} onClick={next} color="blue" className={step===4?'hidden':'block'}>Next Step</Button>
